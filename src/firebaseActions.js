@@ -62,14 +62,28 @@ export const selectDocument = (selectedIndex,typeToAct,selectedDocument)=>
 
 }
 
-export const updateDocument = (objectToUpdate,collectionName,typeToAct)=>
+export const updateDocument = (...args)=>
 {
-  db.collection(collectionName).add(objectToUpdate)
-  return {
-    type:typeToAct,
-    response:objectToUpdate
-  }
+  //debugger
+return function (dispatch)
+{
+ db.collection('MusicList').doc(args[3].woodName).delete().then((success)=>{
+
+db.collection('MusicList').doc(args[0].woodName).set(args[0]).then(()=>{
+  dispatch( receiveDocument({type:args[2],response:args[0]}));
+
+}).catch((excep)=>{
+
+
+})
+  }).catch((excep)=>{
+
+
+  })
+
 }
+}
+
 
 export const getDocument = (collectionName,typeToAct)=>
 {

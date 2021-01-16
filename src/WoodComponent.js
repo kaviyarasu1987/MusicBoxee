@@ -159,6 +159,9 @@ return (
               setTimeout(() => {
                 resolve();
 
+                props.woodSource.onupdate(newData,'Woods',UPDATE_WOOD,oldData)
+
+
               }, 600);
             }),
           onRowDelete: (oldData) =>
