@@ -15,6 +15,7 @@ export const CREATE_WOOD = 'CREATE_WOOD'
 export const CREATE_LYRICS = 'CREATE_LYRICS'
 export const SELECT_WOOD = 'SELECT_WOOD'
 export const SELECT_ALBUM = 'SELECT_ALBUM'
+export const DELETE_WOOD = 'DELETE_WOOD'
 
 const db = firebase.firestore();
 
@@ -62,20 +63,37 @@ export const selectDocument = (selectedIndex,typeToAct,selectedDocument)=>
 
 }
 
+export const deleteDocument = (...args)=>
+{
+
+
+
+
+}
+
 export const updateDocument = (...args)=>
 {
   //debugger
 return function (dispatch)
 {
- db.collection('MusicList').doc(args[3].woodName).delete().then((success)=>{
 
+  
+ db.collection('MusicList').doc(args[3].woodName?args[3].woodName:args[0].woodName).delete().then((success)=>{
+if(!args[4])
+{
 db.collection('MusicList').doc(args[0].woodName).set(args[0]).then(()=>{
-  dispatch( receiveDocument({type:args[2],response:args[0]}));
+  dispatch( receiveDocument({type:args[2],response:args[0],oldObject:args[3]}));
 
 }).catch((excep)=>{
 
 
 })
+}
+else
+{
+  dispatch( receiveDocument({type:args[2],response:args[0],oldObject:args[3]}));
+
+}
   }).catch((excep)=>{
 
 

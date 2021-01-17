@@ -46,7 +46,7 @@ initialLoad:true
 const mappropstoactions =(dispatch,props)=>{
 return {
 oncreate: (objectToCreate,collectionName,typeToAct,woods)=>dispatch(createDocument(objectToCreate,collectionName,typeToAct,woods)),
-onupdate: (objectToUpdate,collectionName,typeToAct,oldObject)=>dispatch(updateDocument(objectToUpdate,collectionName,typeToAct,oldObject)),
+onupdate: (objectToUpdate,collectionName,typeToAct,oldObject,isreUpdate)=>dispatch(updateDocument(objectToUpdate,collectionName,typeToAct,oldObject,isreUpdate)),
 onget: (collectionName,typeToAct)=>dispatch(getDocument(collectionName,typeToAct)),
 onselect:(selectedIndex,typeToAct,selectedData)=>dispatch(selectDocument(selectedIndex,typeToAct,selectedData))
 }

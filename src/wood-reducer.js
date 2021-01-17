@@ -1,4 +1,4 @@
-import {GET_WOOD,UPDATE_WOOD,CREATE_WOOD} from './firebaseActions'
+import {GET_WOOD,UPDATE_WOOD,CREATE_WOOD,DELETE_WOOD} from './firebaseActions'
 import { act } from 'react-dom/test-utils';
 
 export default function woods(state=[],action)
@@ -23,10 +23,10 @@ switch(action.type)
       if(action.response)
       state.forEach((...args)=>{ 
         
-      if(args[0].woodName == action.response.woodName)
+      if(args[0].woodName == action.oldObject.woodName)
       {
           state[args[1]]= action.response
-          return Object.assign([],state)
+          
 
       }
       
@@ -34,7 +34,7 @@ switch(action.type)
 
 
 
-   return [];
+      return Object.assign([],state)
 
     }
   // return musiccomponents.woods.filter(wood=>wood.isUpdateRequired == true);
@@ -48,6 +48,29 @@ switch(action.type)
      }
 
     return [];
+  }
+
+  case DELETE_WOOD:
+
+  {
+    if(action.response)
+    {
+      state.forEach((...args)=>{ 
+        
+        if(args[0].woodName == action.oldObject.woodName)
+        {
+            state.splice(args[1],1)
+            
+  
+        }
+        
+        });
+        return Object.assign([],state)
+
+    }
+
+    return []
+
   }
 
 

@@ -138,12 +138,18 @@ return (
           setTimeout(() => {
             resolve();
 
+            props.albumSource.woods[props.albumSource.currentWoodIndex].albums[oldData.tableData.id] = newData
+            props.albumSource.onupdate(props.albumSource.woods[props.albumSource.currentWoodIndex],'Woods',UPDATE_ALBUM,props.albumSource.woods[props.albumSource.currentWoodIndex].albums)  
+
+
           }, 600);
         }),
       onRowDelete: (oldData) =>
         new Promise((resolve) => {
           setTimeout(() => {
             resolve();
+            props.albumSource.woods[props.albumSource.currentWoodIndex].albums.splice(oldData.tableData.id,1)
+            props.albumSource.onupdate(props.albumSource.woods[props.albumSource.currentWoodIndex],'Woods',UPDATE_ALBUM,props.albumSource.woods[props.albumSource.currentWoodIndex].albums)
 
           }, 600);
         }),

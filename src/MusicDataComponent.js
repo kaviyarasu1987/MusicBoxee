@@ -27,7 +27,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Checkbox from '@material-ui/core/Checkbox';
 import Avatar from '@material-ui/core/Avatar';
-import {GET_LYRICS,UPDATE_LYRICS,CREATE_LYRICS} from './firebaseActions'
+import {GET_LYRICS,UPDATE_LYRICS,CREATE_LYRICS,UPDATE_WOOD} from './firebaseActions'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -104,15 +104,32 @@ export default function MusicDataComponent(props) {
           }),
         onRowUpdate: (newData, oldData) =>
           new Promise((resolve) => {
+           props.musicSource.woods[props.musicSource.currentWoodIndex]
+           .albums[props.musicSource.currentAlbumIndex]
+           .lyrics[oldData.tableData.id] = newData
+
+          // props.musicSource.onudpate(props.musicSource.woods,'Lyrics',CREATE_LYRICS,props.musicSource)
+          
+
+         //   console.log(newData)
+          //  console.log(oldData)
             setTimeout(() => {
               resolve();
+              props.musicSource.onupdate(props.musicSource.woods[props.musicSource.currentWoodIndex],'Woods',UPDATE_LYRICS, props.musicSource.woods[props.musicSource.currentWoodIndex]
+              .albums[props.musicSource.currentAlbumIndex].lyrics)
 
             }, 600);
           }),
         onRowDelete: (oldData) =>
           new Promise((resolve) => {
+            props.musicSource.woods[props.musicSource.currentWoodIndex]
+            .albums[props.musicSource.currentAlbumIndex]
+            .lyrics.splice(oldData.tableData.id,1)
+
             setTimeout(() => {
               resolve();
+              props.musicSource.onupdate(props.musicSource.woods[props.musicSource.currentWoodIndex],'Woods',UPDATE_LYRICS, props.musicSource.woods[props.musicSource.currentWoodIndex]
+              .albums[props.musicSource.currentAlbumIndex].lyrics)
 
             }, 600);
           }),

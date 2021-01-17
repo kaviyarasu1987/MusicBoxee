@@ -8,7 +8,13 @@ switch(action.type)
   case GET_ALBUM:
    return [];
   case UPDATE_ALBUM:
-  return [];
+      {
+        state = action.oldObject
+    
+        return Object.assign([],state)
+    
+      }
+ 
   // return musiccomponents.albums.filter(album=>album.isUpdateRequired == true);
   case CREATE_ALBUM:
   state.push(action.response)

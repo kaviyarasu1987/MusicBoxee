@@ -9,7 +9,12 @@ switch(action.type)
   return action.response?action.response:[];
   case UPDATE_LYRICS:
   //action.lyric
-   return [];
+  {
+    state = action.oldObject
+
+    return Object.assign([],state)
+
+  }
   case CREATE_LYRICS:
   if(action.response)
   {

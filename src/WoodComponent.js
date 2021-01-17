@@ -29,7 +29,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Checkbox from '@material-ui/core/Checkbox';
 import Avatar from '@material-ui/core/Avatar';
-import {GET_WOOD,UPDATE_WOOD,CREATE_WOOD,SELECT_WOOD} from './firebaseActions'
+import {GET_WOOD,UPDATE_WOOD,CREATE_WOOD,SELECT_WOOD,DELETE_WOOD,UPDATE_LYRICS} from './firebaseActions'
 //import React, { useState, useEffect } from 'react';
 
 const useStyles = makeStyles((theme) => ({
@@ -168,7 +168,7 @@ return (
             new Promise((resolve) => {
               setTimeout(() => {
                 resolve();
-
+                props.woodSource.onupdate(oldData,'Woods',DELETE_WOOD,oldData,true) 
               }, 600);
             }),
           onSelectionChange : (oldData) =>
