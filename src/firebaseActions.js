@@ -26,6 +26,7 @@ export const createDocument = (objectToCreate,collectionName,typeToAct,currentSt
  {
    var errorOccured = false;
    var wood ={};
+   const check = ""
    if(typeToAct == "CREATE_WOOD")
    {
      wood = objectToCreate;
