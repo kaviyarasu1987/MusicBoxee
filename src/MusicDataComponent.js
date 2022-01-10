@@ -42,6 +42,7 @@ export default function MusicDataComponent(props) {
  const columLyrics = [
 	  { title: 'Name',  type: 'text', field:'albumName' },
       { title: 'Lyric Description', type: 'text', field:'lyricsDescription' },
+      { title: 'Lyric Text', type: 'text', field:'lyricsText' },
       { title: 'Lyric Value', type: 'text', field:'lyricsValue' },
     { title: 'Lyric Image',  type:'text', field:'lyricImageURI' }
 
@@ -94,22 +95,93 @@ export default function MusicDataComponent(props) {
       data={props.musicSource.lyrics.map(x =>Object.assign({}, x))}
       editable={{
         onRowAdd: (newData) =>
-          new Promise((resolve) => {
+          new Promise((resolve,reject) => {
             setTimeout(() => {
+
+              if(!newData.lyricsValue)
+              {
+                alert('Lyric value should not be empty')
+                reject()
+                return
+              }
+              if(!newData.lyricsText)
+              {
+                alert('Lyric text should not be empty')
+                reject()
+                return
+              }
+
+              if(!newData.lyricsDescription)
+              {
+                alert('Lyric descrypton should not be empty')
+                reject()
+                return
+              }
+
+              if(!newData.albumName)
+              {
+                alert('Lyric name should not be empty')
+                reject()
+                return
+              }
+              if(newData.lyricsValue.split(" ").length != newData.lyricsText.split(" ").length)
+              {
+                alert('Lyric value and text spaces should be same')
+                reject()
+                return
+
+              }
+
+
               resolve();
-                props.musicSource.albums[props.musicSource.currentAlbumIndex].lyrics.push(newData)
+              props.musicSource.albums[props.musicSource.currentAlbumIndex].lyrics.push(newData)
               props.musicSource.oncreate(newData,'Lyrics',CREATE_LYRICS,props.musicSource)
             //  props.woodSource.push(newData);
             }, 600);
           }),
         onRowUpdate: (newData, oldData) =>
-          new Promise((resolve) => {
+          new Promise((resolve,reject) => {
+
+            if(!newData.lyricsValue)
+            {
+              alert('Lyric value should not be empty')
+              reject()
+              return
+            }
+            if(!newData.lyricsText)
+            {
+              alert('Lyric text should not be empty')
+              reject()
+              return
+            }
+
+            if(!newData.lyricsDescription)
+            {
+              alert('Lyric descrypton should not be empty')
+              reject()
+              return
+            }
+
+            if(!newData.albumName)
+            {
+              alert('Lyric name should not be empty')
+              reject()
+              return
+            }
+            if(newData.lyricsValue.split(" ").length != newData.lyricsText.split(" ").length)
+            {
+              alert('Lyric value and text spaces should be same')
+              reject()
+              return
+
+            }
+
            props.musicSource.woods[props.musicSource.currentWoodIndex]
            .albums[props.musicSource.currentAlbumIndex]
            .lyrics[oldData.tableData.id] = newData
 
           // props.musicSource.onudpate(props.musicSource.woods,'Lyrics',CREATE_LYRICS,props.musicSource)
-          
+
 
          //   console.log(newData)
           //  console.log(oldData)
