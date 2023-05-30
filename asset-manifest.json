@@ -1,27 +1,27 @@
 {
   "files": {
-    "main.css": "/musicboxbackend/static/css/main.5f361e03.chunk.css",
-    "main.js": "/musicboxbackend/static/js/main.880e901f.chunk.js",
-    "main.js.map": "/musicboxbackend/static/js/main.880e901f.chunk.js.map",
-    "runtime-main.js": "/musicboxbackend/static/js/runtime-main.163b1e24.js",
-    "runtime-main.js.map": "/musicboxbackend/static/js/runtime-main.163b1e24.js.map",
-    "static/css/2.0d689a7f.chunk.css": "/musicboxbackend/static/css/2.0d689a7f.chunk.css",
-    "static/js/2.d1c95e30.chunk.js": "/musicboxbackend/static/js/2.d1c95e30.chunk.js",
-    "static/js/2.d1c95e30.chunk.js.map": "/musicboxbackend/static/js/2.d1c95e30.chunk.js.map",
-    "index.html": "/musicboxbackend/index.html",
-    "precache-manifest.0530c1e153c7aff09ec3e195a6bf86c5.js": "/musicboxbackend/precache-manifest.0530c1e153c7aff09ec3e195a6bf86c5.js",
-    "service-worker.js": "/musicboxbackend/service-worker.js",
-    "static/css/2.0d689a7f.chunk.css.map": "/musicboxbackend/static/css/2.0d689a7f.chunk.css.map",
-    "static/css/main.5f361e03.chunk.css.map": "/musicboxbackend/static/css/main.5f361e03.chunk.css.map",
-    "static/js/2.d1c95e30.chunk.js.LICENSE.txt": "/musicboxbackend/static/js/2.d1c95e30.chunk.js.LICENSE.txt",
-    "static/media/UploadIcon.svg": "/musicboxbackend/static/media/UploadIcon.1cedb6e9.svg",
-    "static/media/logo.svg": "/musicboxbackend/static/media/logo.5d5d9eef.svg"
+    "main.css": "/MusicBoxee/static/css/main.5f361e03.chunk.css",
+    "main.js": "/MusicBoxee/static/js/main.8bad2404.chunk.js",
+    "main.js.map": "/MusicBoxee/static/js/main.8bad2404.chunk.js.map",
+    "runtime-main.js": "/MusicBoxee/static/js/runtime-main.d2addbcb.js",
+    "runtime-main.js.map": "/MusicBoxee/static/js/runtime-main.d2addbcb.js.map",
+    "static/css/2.0d689a7f.chunk.css": "/MusicBoxee/static/css/2.0d689a7f.chunk.css",
+    "static/js/2.ffa243a9.chunk.js": "/MusicBoxee/static/js/2.ffa243a9.chunk.js",
+    "static/js/2.ffa243a9.chunk.js.map": "/MusicBoxee/static/js/2.ffa243a9.chunk.js.map",
+    "index.html": "/MusicBoxee/index.html",
+    "precache-manifest.76566acf11cc73feef36ff134d54c033.js": "/MusicBoxee/precache-manifest.76566acf11cc73feef36ff134d54c033.js",
+    "service-worker.js": "/MusicBoxee/service-worker.js",
+    "static/css/2.0d689a7f.chunk.css.map": "/MusicBoxee/static/css/2.0d689a7f.chunk.css.map",
+    "static/css/main.5f361e03.chunk.css.map": "/MusicBoxee/static/css/main.5f361e03.chunk.css.map",
+    "static/js/2.ffa243a9.chunk.js.LICENSE.txt": "/MusicBoxee/static/js/2.ffa243a9.chunk.js.LICENSE.txt",
+    "static/media/UploadIcon.svg": "/MusicBoxee/static/media/UploadIcon.1cedb6e9.svg",
+    "static/media/logo.svg": "/MusicBoxee/static/media/logo.5d5d9eef.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.163b1e24.js",
+    "static/js/runtime-main.d2addbcb.js",
     "static/css/2.0d689a7f.chunk.css",
-    "static/js/2.d1c95e30.chunk.js",
+    "static/js/2.ffa243a9.chunk.js",
     "static/css/main.5f361e03.chunk.css",
-    "static/js/main.880e901f.chunk.js"
+    "static/js/main.8bad2404.chunk.js"
   ]
 }
