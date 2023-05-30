@@ -23,7 +23,7 @@ switch(action.type)
       if(action.response)
       state.forEach((...args)=>{ 
         
-      if(args[0].woodName == action.oldObject.woodName)
+      if(args[0].id == action.oldObject.id)
       {
           state[args[1]]= action.response
           
@@ -57,7 +57,7 @@ switch(action.type)
     {
       state.forEach((...args)=>{ 
         
-        if(args[0].woodName == action.oldObject.woodName)
+        if(args[0].name == action.oldObject.name)
         {
             state.splice(args[1],1)
             

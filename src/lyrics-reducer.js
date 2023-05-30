@@ -1,4 +1,4 @@
-import {GET_LYRICS,UPDATE_LYRICS,CREATE_LYRICS,SELECT_ALBUM} from './firebaseActions'
+import {GET_LYRICS,UPDATE_LYRICS_MASTER,CREATE_LYRICS,SELECT_ALBUM} from './firebaseActions'
 
 export default function lyrics(state=[],action)
 {
@@ -7,7 +7,7 @@ switch(action.type)
 {
   case GET_LYRICS:
   return action.response?action.response:[];
-  case UPDATE_LYRICS:
+  case UPDATE_LYRICS_MASTER:
   //action.lyric
   {
     state = action.oldObject

@@ -20,6 +20,9 @@ import DeleteOutline from '@material-ui/icons/DeleteOutline';
 import Edit from '@material-ui/icons/Edit';
 import Clear from '@material-ui/icons/Clear';
 
+import { AddBox, ArrowDownward } from "@material-ui/icons";
+
+
 
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
@@ -29,7 +32,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Checkbox from '@material-ui/core/Checkbox';
 import Avatar from '@material-ui/core/Avatar';
-import {GET_WOOD,UPDATE_WOOD,CREATE_WOOD,SELECT_WOOD,DELETE_WOOD,UPDATE_LYRICS} from './firebaseActions'
+import {GET_WOOD,UPDATE_WOOD,CREATE_WOOD,SELECT_WOOD,DELETE_WOOD,UPDATE_LYRICS,SELECT_ALBUM} from './firebaseActions'
 //import React, { useState, useEffect } from 'react';
 
 const useStyles = makeStyles((theme) => ({
@@ -48,21 +51,25 @@ function WoodComponent(props)
     'Hollywood', 'Bollywood', 'Nollywood'
   ];
   const columWoods = [
-	  { title: 'Name',  type: 'text', field:'woodName' },
+	  { title: 'Student name',  type: 'text', field:'name' },
       { title: 'Country',  type:'text', field:'countryCode' },
-      { title: 'Wood Descrption', type: 'text', field:'woodDescription' },
-      { title: 'Western Image URL',  type: 'text', field:'woodImageURI' }
+      { title: 'Student Descrption', type: 'text', field:'userDescription' },
+      { title: 'Student Image',  type: 'text', field:'woodImageURI' }
 
      ]
      useEffect(()=>{
 
          //console.log(props)
           console.log('for test from effect'+props)
+          if(props.woodSource.woods.length>0)
+            props.woodSource.onselect(0,SELECT_ALBUM,props.woodSource.woods[0].albums.length>0?props.woodSource.woods[0].albums[0].lyrics:[])
+
+
        //  props.type = GET_WOOD
        //  props.onget('Woods',GET_WOOD)
 
 
-     })
+     },[props.woodSource.woods])
   const defaultOption = options[0];
   //const [state, setState] = React.useState({})
 //  const woodSource = props.woodSource.woods;
@@ -99,7 +106,8 @@ function handleChange(data)
 function handleRowClick(event, rowData)  {
 
   props.woodSource.onselect(rowData.tableData.id,SELECT_WOOD,rowData.albums)
-
+  props.woodSource.onselect(0,SELECT_ALBUM,rowData.albums.length>0?rowData.albums[0].lyrics:[])
+  debugger
 
 }
 
@@ -112,9 +120,9 @@ function _onSelect(data)
 return (
 
   <div style={formStyle}>
-  <h1>Woods</h1>
+  <h1>Student List</h1>
       <MaterialTable
-        title="Wood Data Editor"
+        title="Students"
         onRowClick={handleRowClick}
         icons={{
                    Check: Check,
@@ -130,27 +138,18 @@ return (
                    Delete: DeleteOutline,
                    Edit:Edit,
                    Add:Add,
-                   Clear:Clear
+                   Clear:AddBox
                  }}
 
         columns={columWoods}
         data={_posts.map(x =>Object.assign({}, x))}
         options={{
-             search: false
+             search: true
 
              }}
 
         editable={{
-          onRowAdd: (newData,index) =>
-            new Promise((resolve) => {
-              setTimeout(() => {
-                resolve();
-                newData.albums=[];
-                //newData.albums=[{ 'albumName':'test'+props.woodSource.woods.length,'albumDescription':'test'+props.woodSource.woods.length,'albumDate':'test','albumDate':'test'+props.woodSource.woods.length,'albumImageURI':'test' }]
-                props.woodSource.oncreate(newData,'Woods',CREATE_WOOD,props.woodSource)
-
-              }, 600);
-            }),
+         
             onRowCLick:(selectedData)=>{
                 debugger;
             },

@@ -61,7 +61,9 @@ function AlbumComponent(props)
   color: 'blue',
   width:'30%',
   paddingLeft:'20px',
-  height:'100px'
+  height:'100px',
+  display:'none'
+  
   }
   const inputStyle = {
 

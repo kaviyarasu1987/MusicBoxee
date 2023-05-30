@@ -8,6 +8,7 @@ import {Provider} from 'react-redux';
 import React, { useState, useEffect } from 'react';
 import woods from './wood-reducer'
 import lyrics from './lyrics-reducer'
+import lyricsmaster from './lyrics-master-reducer'
 import albums from './album-reducer'
 import type from './music-reducer'
 import currentAlbumIndex from './current-album-index'
@@ -26,7 +27,8 @@ const allreducer = combineReducers(
   albums,
   lyrics,
   currentWoodIndex,
-  currentAlbumIndex
+  currentAlbumIndex,
+  lyricsmaster
 
 })
 

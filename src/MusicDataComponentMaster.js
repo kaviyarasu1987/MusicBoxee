@@ -27,7 +27,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Checkbox from '@material-ui/core/Checkbox';
 import Avatar from '@material-ui/core/Avatar';
-import {GET_LYRICS,UPDATE_LYRICS,CREATE_LYRICS,UPDATE_WOOD} from './firebaseActions'
+import {GET_LYRICS,CREATE_LYRICS,UPDATE_WOOD, INSERT_LYRICS, GET_MUSIC_LIST,UPDATE_LYRICS_MASTER} from './firebaseActions'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -51,7 +51,7 @@ export default function MusicDataComponent(props) {
   const formStyle = {
   float:'left',
   color: 'blue',
-  width:'60%',
+  width:'95%',
   paddingLeft:'20px'
   }
   const inputStyle = {
@@ -72,9 +72,9 @@ export default function MusicDataComponent(props) {
 
   return (
     <div style={formStyle}>
-    <h1>{props.musicSource.woods[props.musicSource.currentWoodIndex]?props.musicSource.woods[props.musicSource.currentWoodIndex].name:"Music List" }</h1>
+    <h1>Music List</h1>
     <MaterialTable
-      title={props.musicSource.woods[props.musicSource.currentWoodIndex]?props.musicSource.woods[props.musicSource.currentWoodIndex].name+"'s music list":"Music List" }
+      title="Music List"
       icons={{
                  Check: Check,
                  DetailPanel: ChevronRight,
@@ -93,7 +93,7 @@ export default function MusicDataComponent(props) {
                }}
 
       columns={columLyrics}
-      data={props.musicSource.lyrics.map(x =>Object.assign({}, x))}
+      data={props.musicSource.lyricsmaster.map(x =>Object.assign({}, x))}
       editable={{
         onRowAdd: (newData) =>
           new Promise((resolve,reject) => {
@@ -134,22 +134,8 @@ export default function MusicDataComponent(props) {
               }
 
 
-              if(props.musicSource.albums.length<=0)
-              {
-                props.musicSource.albums.push({lyrics:[]})
-               // props.musicSource.albums.push({lyrics:[]})
-
-              }
-
-              if(props.musicSource.woods[props.musicSource.currentWoodIndex].albums.length<=0)
-              {
-                props.musicSource.woods[props.musicSource.currentWoodIndex].albums.push({lyrics:[]})
-
-              }
-             
-              //props.musicSource.albums[props.musicSource.currentAlbumIndex].lyrics.push(newData)
-              props.musicSource.woods[props.musicSource.currentWoodIndex].albums[props.musicSource.currentAlbumIndex].lyrics.push(newData)
-              props.musicSource.oncreate(newData,'Lyrics',CREATE_LYRICS,props.musicSource)
+            //  props.musicSource.lyricsmaster.push(newData)  
+              props.musicSource.oncreate(newData,'Lyrics',INSERT_LYRICS,props.musicSource)
               resolve();
             //  props.woodSource.push(newData);
             }, 600);
@@ -191,32 +177,32 @@ export default function MusicDataComponent(props) {
 
             }
 
-           props.musicSource.woods[props.musicSource.currentWoodIndex]
-           .albums[props.musicSource.currentAlbumIndex]
-           .lyrics[oldData.tableData.id] = newData
-
-          // props.musicSource.onudpate(props.musicSource.woods,'Lyrics',CREATE_LYRICS,props.musicSource)
-
-
-         //   console.log(newData)
-          //  console.log(oldData)
+     
             setTimeout(() => {
               resolve();
-              props.musicSource.onupdate(props.musicSource.woods[props.musicSource.currentWoodIndex],'Woods',UPDATE_LYRICS, props.musicSource.woods[props.musicSource.currentWoodIndex]
-              .albums[props.musicSource.currentAlbumIndex].lyrics)
+              props.musicSource.onupdate(newData,'MusicList',UPDATE_LYRICS_MASTER,oldData)
 
             }, 600);
+
+       
           }),
         onRowDelete: (oldData) =>
           new Promise((resolve) => {
-            props.musicSource.woods[props.musicSource.currentWoodIndex]
-            .albums[props.musicSource.currentAlbumIndex]
-            .lyrics.splice(oldData.tableData.id,1)
+           
+
+            // setTimeout(() => {
+            //   resolve();
+            //   props.musicSource.onupdate(props.musicSource.lyricsmaster,'Woods',UPDATE_LYRICS, props.musicSource.lyricsmaster)
+
+            // }, 600);
+
+            props.musicSource.lyricsmaster.splice(oldData.tableData.id,1)
+
 
             setTimeout(() => {
               resolve();
-              props.musicSource.onupdate(props.musicSource.woods[props.musicSource.currentWoodIndex],'Woods',UPDATE_LYRICS, props.musicSource.woods[props.musicSource.currentWoodIndex]
-              .albums[props.musicSource.currentAlbumIndex].lyrics)
+
+              props.musicSource.ondelete(oldData,'MusicList',GET_MUSIC_LIST, props.musicSource.lyricsmaster)
 
             }, 600);
           }),
